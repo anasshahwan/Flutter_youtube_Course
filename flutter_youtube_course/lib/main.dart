@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MaterialApp(
+void main() => runApp(
+
+MyApp()
+);
+
+
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return     MaterialApp(
       home: Scaffold(
         drawer: Drawer(
           child: Center(
@@ -45,9 +55,9 @@ void main() => runApp(MaterialApp(
                   'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
             ),
             Image(
-              height: 200,
-              width: 200,
-              image: AssetImage('images/logo.png')),
+                height: 200,
+                width: 200,
+                image: AssetImage('images/logo.png')),
             Center(
               child: Text("Test My App",style: TextStyle(
                   color: Colors.blue,fontSize: 20,fontFamily: 'ComingSoon',fontWeight: FontWeight.bold
@@ -59,4 +69,7 @@ void main() => runApp(MaterialApp(
           ],
         ),
       ),
-    ));
+    )
+    ;
+  }
+}
