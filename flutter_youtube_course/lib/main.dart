@@ -49,7 +49,9 @@ void main() => runApp(MaterialApp(
               width: 200,
               image: AssetImage('images/logo.png')),
             Center(
-              child: Text("Test My App"),
+              child: Text("Test My App",style: TextStyle(
+                  color: Colors.blue,fontSize: 20,fontFamily: 'ComingSoon',fontWeight: FontWeight.bold
+              ),),
             ),
             Center(
               child: Text("Test My App"),
