@@ -2,7 +2,15 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  int myFollowers = 400;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -40,7 +48,7 @@ class MyApp extends StatelessWidget {
                     Column(
                       children: <Widget>[
                         Text(
-                          '@USERNAME',
+                          '@Anas shahwan',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 30,
@@ -72,7 +80,14 @@ class MyApp extends StatelessWidget {
                       ],
                     ),
                     FlatButton(
-                      onPressed: null,
+                      onPressed: (){
+
+
+                        setState(() {
+                          myFollowers = myFollowers + 1;
+                        });
+
+                      },
                       child: Row(
                         children: <Widget>[
                           Icon(
@@ -114,7 +129,7 @@ class MyApp extends StatelessWidget {
                     Column(
                       children: <Widget>[
                         Text(
-                          '400',
+                          '$myFollowers',
                           style: TextStyle(
                               color: Colors.green[500],
                               fontWeight: FontWeight.bold,
@@ -341,3 +356,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
