@@ -9,7 +9,31 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
+
+  var myVariable = false;
+
   int myFollowers = 400;
+
+  String myName = "anas";
+
+  bool isActive = false;
+
+  double age = 25.5;
+
+  dynamic anything = "test";
+
+
+   void printUserName({String userName,double age}) {
+
+        print("UserName :" + userName + "And my Age is "+age.toString());
+
+   }
+
+   int addTwoNumbers(int firstNumber,int secondNumber){
+
+     return firstNumber+secondNumber;
+   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -82,12 +106,10 @@ class _MyAppState extends State<MyApp> {
                     FlatButton(
                       onPressed: (){
 
+                      int Result = addTwoNumbers(5,33);
+                      print(Result);
 
-                        setState(() {
-                          myFollowers = myFollowers + 1;
-                        });
-
-                      },
+                        },
                       child: Row(
                         children: <Widget>[
                           Icon(
