@@ -35,6 +35,34 @@ class _MyAppState extends State<MyApp> {
    }
 
 
+
+   List<Widget> myReviews = [
+
+     Card(
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          backgroundImage: AssetImage('images/avatar.png'),
+                          maxRadius: 20,
+                        ),
+                        title: Text('Good Services'),
+                        subtitle: Text('Monday, January 20, 2020'),
+                        trailing: Icon(Icons.more_vert),
+                      ),
+                    ),
+     Card(
+       child: ListTile(
+         leading: CircleAvatar(
+           backgroundImage: AssetImage('images/beard.png'),
+           maxRadius: 20,
+         ),
+         title: Text('Good Services'),
+         subtitle: Text('Sat, January 20, 2111'),
+         trailing: Icon(Icons.more_vert),
+       ),
+     ),
+
+   ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -44,6 +72,7 @@ class _MyAppState extends State<MyApp> {
             padding: EdgeInsets.all(15),
             child: ListView(
               children: <Widget>[
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -106,9 +135,20 @@ class _MyAppState extends State<MyApp> {
                     FlatButton(
                       onPressed: (){
 
-                      int Result = addTwoNumbers(5,33);
-                      print(Result);
+                myReviews.add( Card(
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: AssetImage('images/avatar.png'),
+                      maxRadius: 20,
+                    ),
+                    title: Text('Good Services'),
+                    subtitle: Text('Monday, January 20, 2020'),
+                    trailing: Icon(Icons.more_vert),
+                  ),
+                ),);
 
+                setState(() {
+                                 });
                         },
                       child: Row(
                         children: <Widget>[
@@ -256,120 +296,13 @@ class _MyAppState extends State<MyApp> {
                       ),
                     ),
                     SizedBox(height: 20,),
-                    Card(
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage: AssetImage('images/avatar.png'),
-                          maxRadius: 20,
-                        ),
-                        title: Text('Good Services'),
-                        subtitle: Text('Monday, January 20, 2020'),
-                        trailing: Icon(Icons.more_vert),
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage: AssetImage('images/beard.png'),
-                          maxRadius: 20,
-                        ),
-                        title: Text('Good Services'),
-                        subtitle: Text('Monday, January 20, 2020'),
-                        trailing: Icon(Icons.more_vert),
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage: AssetImage('images/avatar.png'),
-                          maxRadius: 20,
-                        ),
-                        title: Text('Good Services'),
-                        subtitle: Text('Monday, January 20, 2020'),
-                        trailing: Icon(Icons.more_vert),
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage: AssetImage('images/avatar.png'),
-                          maxRadius: 20,
-                        ),
-                        title: Text('Good Services'),
-                        subtitle: Text('Monday, January 20, 2020'),
-                        trailing: Icon(Icons.more_vert),
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage: AssetImage('images/avatar.png'),
-                          maxRadius: 20,
-                        ),
-                        title: Text('Good Services'),
-                        subtitle: Text('Monday, January 20, 2020'),
-                        trailing: Icon(Icons.more_vert),
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage: AssetImage('images/avatar.png'),
-                          maxRadius: 20,
-                        ),
-                        title: Text('Good Services'),
-                        subtitle: Text('Monday, January 20, 2020'),
-                        trailing: Icon(Icons.more_vert),
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage: AssetImage('images/avatar.png'),
-                          maxRadius: 20,
-                        ),
-                        title: Text('Good Services'),
-                        subtitle: Text('Monday, January 20, 2020'),
-                        trailing: Icon(Icons.more_vert),
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage: AssetImage('images/avatar.png'),
-                          maxRadius: 20,
-                        ),
-                        title: Text('Good Services'),
-                        subtitle: Text('Monday, January 20, 2020'),
-                        trailing: Icon(Icons.more_vert),
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage: AssetImage('images/avatar.png'),
-                          maxRadius: 20,
-                        ),
-                        title: Text('Good Services'),
-                        subtitle: Text('Monday, January 20, 2020'),
-                        trailing: Icon(Icons.more_vert),
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage: AssetImage('images/avatar.png'),
-                          maxRadius: 20,
-                        ),
-                        title: Text('Good Services'),
-                        subtitle: Text('Monday, January 20, 2020'),
-                        trailing: Icon(Icons.more_vert),
-                      ),
-                    ),
 
 
                   ],
-                )
+                ),
+                Column(children: myReviews.map((myOwnWidet){
+                  return myOwnWidet;
+                }).toList(),)
               ],
             ),
           ),
