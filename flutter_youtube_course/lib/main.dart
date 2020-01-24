@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'comment.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
@@ -10,58 +10,17 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
 
 
-  var myVariable = false;
 
-  int myFollowers = 400;
+  List<Comment> myComments = [
 
-  String myName = "anas";
+    Comment(image_url:'images/avatar.png',title:'Good Service', Date:"Monday January 20, 2020"),
+    Comment(image_url:'images/beard.png',title:'Clean Car', Date:"Monday January 20, 2020"),
 
-  bool isActive = false;
-
-  double age = 25.5;
-
-  dynamic anything = "test";
-
-
-   void printUserName({String userName,double age}) {
-
-        print("UserName :" + userName + "And my Age is "+age.toString());
-
-   }
-
-   int addTwoNumbers(int firstNumber,int secondNumber){
-
-     return firstNumber+secondNumber;
-   }
+  ];
 
 
 
-   List<Widget> myReviews = [
 
-     Card(
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage: AssetImage('images/avatar.png'),
-                          maxRadius: 20,
-                        ),
-                        title: Text('Good Services'),
-                        subtitle: Text('Monday, January 20, 2020'),
-                        trailing: Icon(Icons.more_vert),
-                      ),
-                    ),
-     Card(
-       child: ListTile(
-         leading: CircleAvatar(
-           backgroundImage: AssetImage('images/beard.png'),
-           maxRadius: 20,
-         ),
-         title: Text('Good Services'),
-         subtitle: Text('Sat, January 20, 2111'),
-         trailing: Icon(Icons.more_vert),
-       ),
-     ),
-
-   ];
 
   @override
   Widget build(BuildContext context) {
@@ -135,17 +94,7 @@ class _MyAppState extends State<MyApp> {
                     FlatButton(
                       onPressed: (){
 
-                myReviews.add( Card(
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage: AssetImage('images/avatar.png'),
-                      maxRadius: 20,
-                    ),
-                    title: Text('Good Services'),
-                    subtitle: Text('Monday, January 20, 2020'),
-                    trailing: Icon(Icons.more_vert),
-                  ),
-                ),);
+               myComments.add(Comment(image_url:'images/diamond.png' ,title:'test' ,Date: 'Try it ..'));
 
                 setState(() {
                                  });
@@ -191,7 +140,7 @@ class _MyAppState extends State<MyApp> {
                     Column(
                       children: <Widget>[
                         Text(
-                          '$myFollowers',
+                          '386',
                           style: TextStyle(
                               color: Colors.green[500],
                               fontWeight: FontWeight.bold,
@@ -300,8 +249,8 @@ class _MyAppState extends State<MyApp> {
 
                   ],
                 ),
-                Column(children: myReviews.map((myOwnWidet){
-                  return myOwnWidet;
+                Column(children: myComments.map((comment){
+                  return commentsCards(comment);
                 }).toList(),)
               ],
             ),
@@ -313,3 +262,19 @@ class _MyAppState extends State<MyApp> {
 }
 
 
+
+Widget commentsCards(comment){
+
+  return  Card(
+    child: ListTile(
+      leading: CircleAvatar(
+        backgroundImage: AssetImage(comment.image_url),
+        maxRadius: 20,
+      ),
+      title: Text(comment.title),
+      subtitle: Text(comment.Date),
+      trailing: Icon(Icons.more_vert),
+    ),
+  );
+
+}
