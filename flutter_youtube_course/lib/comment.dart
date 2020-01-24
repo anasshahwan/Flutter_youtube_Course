@@ -1,6 +1,4 @@
 
-import 'package:flutter/cupertino.dart';
-
 class Comment {
 
   String image_url;

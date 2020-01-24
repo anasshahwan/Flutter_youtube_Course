@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'comment.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
@@ -10,16 +11,12 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
 
 
-
   List<Comment> myComments = [
 
     Comment(image_url:'images/avatar.png',title:'Good Service', Date:"Monday January 20, 2020"),
     Comment(image_url:'images/beard.png',title:'Clean Car', Date:"Monday January 20, 2020"),
 
   ];
-
-
-
 
 
   @override
@@ -250,7 +247,12 @@ class _MyAppState extends State<MyApp> {
                   ],
                 ),
                 Column(children: myComments.map((comment){
-                  return commentsCards(comment);
+                  return commentsCardWidget(comment:comment,onClick: (){
+
+                    myComments.remove(comment);
+                    print("Deleted");
+                    setState(() {});
+                  },child: Text("Extra Child ..."),);
                 }).toList(),)
               ],
             ),
@@ -262,19 +264,29 @@ class _MyAppState extends State<MyApp> {
 }
 
 
+class commentsCardWidget extends StatelessWidget {
 
-Widget commentsCards(comment){
+  final Comment comment;
+  final Function onClick;
+  final Widget child;
 
-  return  Card(
-    child: ListTile(
-      leading: CircleAvatar(
-        backgroundImage: AssetImage(comment.image_url),
-        maxRadius: 20,
+  commentsCardWidget({this.comment,this.onClick,this.child});
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundImage: AssetImage(comment.image_url),
+          maxRadius: 20,
+        ),
+        title: Text(comment.title),
+        subtitle: child,
+        trailing: GestureDetector(
+            onTap: onClick,
+            child: Icon(Icons.delete)),
       ),
-      title: Text(comment.title),
-      subtitle: Text(comment.Date),
-      trailing: Icon(Icons.more_vert),
-    ),
-  );
-
+    );
+  }
 }
