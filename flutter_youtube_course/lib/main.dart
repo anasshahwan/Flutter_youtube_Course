@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'comment.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MaterialApp(home:MyApp()));
 
 class MyApp extends StatefulWidget {
   @override
@@ -18,11 +18,39 @@ class _MyAppState extends State<MyApp> {
 
   ];
 
+  void _showDialog(comment) {
+    print(comment);
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Alert Dialog title"),
+          content: new Text("Alert Dialog body"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            new FlatButton(
+              child: new Text("Yes Sure "),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
 
+          ],
+        );
+      },
+    );
+  }
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         body: SafeArea(
           child: Container(
             padding: EdgeInsets.all(15),
@@ -243,23 +271,19 @@ class _MyAppState extends State<MyApp> {
                     ),
                     SizedBox(height: 20,),
 
-
                   ],
                 ),
                 Column(children: myComments.map((comment){
                   return commentsCardWidget(comment:comment,onClick: (){
 
-                    myComments.remove(comment);
-                    print("Deleted");
-                    setState(() {});
+                    _showDialog(comment);
                   },child1: Text("Extra Child 1"),child2: Text('Extra child 2.. '),);
                 }).toList(),)
               ],
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 }
 
@@ -278,6 +302,8 @@ class commentsCardWidget extends StatefulWidget {
 }
 
 class _commentsCardWidgetState extends State<commentsCardWidget> {
+
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -298,3 +324,5 @@ class _commentsCardWidgetState extends State<commentsCardWidget> {
     );
   }
 }
+
+
