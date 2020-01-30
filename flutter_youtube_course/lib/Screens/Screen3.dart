@@ -5,8 +5,13 @@ class Screen3 extends StatelessWidget {
 
   static final pageName = '/Screen3';
 
+     final String myValue;
+
+     Screen3({this.myValue});
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         appBar: (AppBar(
           title: Text("Screen3"),
