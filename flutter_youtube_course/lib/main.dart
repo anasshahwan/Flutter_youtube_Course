@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_youtube_course/Screens/CardDetails.dart';
 import 'comment.dart';
+import 'Widgets/CommentCardWidget.dart';
 
-void main() => runApp(MaterialApp(home:MyApp()));
+import 'Screens/Screen3.dart';
+void main() => runApp(MaterialApp(
+  initialRoute: '/',
+     routes: {
+     MyApp.pageName:(context)=> MyApp(),
+       Screen3.pageName:(context)=>Screen3(),
+      CardDetails.pageName:(context)=>CardDetails()
+    },
+  ));
 
 class MyApp extends StatefulWidget {
+  static final pageName = '/';
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -66,8 +77,7 @@ class _MyAppState extends State<MyApp> {
 
    @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return  Scaffold(
           body: SafeArea(
             child: Container(
               padding: EdgeInsets.all(15),
@@ -302,45 +312,7 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
           ),
-        ),
-    );
-  }
-}
 
-
-class commentsCardWidget extends StatefulWidget {
-
-  final Comment comment;
-  final Function onClick;
-  final Widget child1;
-  final Widget child2;
-
-  commentsCardWidget({this.comment,this.onClick,this.child1,this.child2});
-
-  @override
-  _commentsCardWidgetState createState() => _commentsCardWidgetState();
-}
-
-class _commentsCardWidgetState extends State<commentsCardWidget> {
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        leading: CircleAvatar(
-          backgroundImage: AssetImage(widget.comment.image_url),
-          maxRadius: 20,
-        ),
-        title: Column(children: <Widget>[
-          widget.child1,
-          widget.child2
-        ],),
-        subtitle: Text('subtitle'),
-        trailing: GestureDetector(
-            onTap: widget.onClick,
-            child: Icon(Icons.delete)),
-      ),
     );
   }
 }
