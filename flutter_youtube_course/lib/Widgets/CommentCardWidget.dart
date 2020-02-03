@@ -20,7 +20,7 @@ class _commentsCardWidgetState extends State<commentsCardWidget> {
     return GestureDetector(
       onTap: () {
 
-         Navigator.pushNamed(context, CardDetails.pageName,arguments: CardDetails(image_url: 'ok',subtitle: "mySub",title: "title",));
+         Navigator.pushNamed(context, CardDetails.pageName,arguments: CardDetails(image_url: widget.comment.image_url,title: widget.comment.title,date: widget.comment.Date,));
       },
       child: Card(
         child: ListTile(
@@ -29,7 +29,7 @@ class _commentsCardWidgetState extends State<commentsCardWidget> {
             maxRadius: 20,
           ),
           title: Column(
-            children: <Widget>[widget.child1, widget.child2],
+            children: <Widget>[Text(widget.comment.title), Text(widget.comment.Date)],
           ),
           subtitle: Text('subtitle'),
           trailing:

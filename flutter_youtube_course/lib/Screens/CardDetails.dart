@@ -8,8 +8,9 @@ class CardDetails extends StatelessWidget {
   final String image_url;
   final String title;
   final String subtitle;
+  final String date;
 
-    CardDetails({@required this.image_url,this.title,this.subtitle});
+    CardDetails({@required this.image_url,this.title,this.subtitle,this.date});
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +28,9 @@ class CardDetails extends StatelessWidget {
           children: <Widget>[
 
             Text(args.title),
-            Text(args.image_url),
-          Text(args.subtitle),
+          Image.asset(args.image_url),
+
+          Text(args.date),
             RaisedButton(child: Text("Go to Screen 3 "),onPressed: (){
 
           //    Navigator.push(context, MaterialPageRoute(builder: (context)=>Screen3()));
