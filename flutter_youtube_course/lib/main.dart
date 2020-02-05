@@ -4,7 +4,10 @@ import 'comment.dart';
 import 'Widgets/CommentCardWidget.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'Screens/Screen3.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:location/location.dart';
 
+import 'package:flutter/services.dart';
 
 void main() => runApp(MaterialApp(
       initialRoute: '/',
@@ -151,9 +154,34 @@ class _MyAppState extends State<MyApp> {
                   Row(
                     children: <Widget>[
                       Icon(Icons.pin_drop),
-                      Text(
-                        'Current address',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                      GestureDetector(
+                        onTap: () async{
+
+                          dynamic currentLocation = LocationData;
+
+                          var error;
+
+                          var location = new Location();
+
+// Platform messages may fail, so we use a try/catch PlatformException.
+                          try {
+                            currentLocation = await location.getLocation();
+                            print(currentLocation.latitude);
+                          } on PlatformException catch (e) {
+                            if (e.code == 'PERMISSION_DENIED') {
+                              error = 'Permission denied';
+                            }
+                            currentLocation = null;
+                          }
+
+
+
+
+                        },
+                        child: Text(
+                          'Current Location',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       )
                     ],
                   ),
