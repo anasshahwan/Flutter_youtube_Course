@@ -7,6 +7,8 @@ import 'Screens/Screen3.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:location/location.dart';
 
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 import 'package:flutter/services.dart';
 
 void main() => runApp(MaterialApp(
@@ -25,61 +27,50 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  List<Comment> myComments = [
 
-    Comment(
+  @override
+  initState(){
+    super.initState();
+    getCurrentUserLocation();
+  }
+
+  List<Comment> myComments = [Comment(
         image_url: 'images/avatar.png',
         title: 'Good Service',
-        Date: "Monday January 15, 2018"),
-    Comment(
+        Date: "Monday January 15, 2018"), Comment(
         image_url: 'images/beard.png',
         title: 'Clean Car',
-        Date: "Monday January 20, 2020"),
-  ];
+        Date: "Monday January 20, 2020"),];
 
-  openMyDialog(comment) {
+  double userLongitude;
+  double userLatitude;
 
-    return showDialog(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
 
-        /*   return AlertDialog(
-          backgroundColor: Colors.blue,
-          title: Text(
-            'Are You Sure that you want to delete this Card ??..',
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 30,
-                fontFamily: 'ComingSoon'),
-          ),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[],
-            ),
-          ),
-          actions: <Widget>[
-            FlatButton(
-              color: Colors.red,
-              child: Text('Yes'),
-              onPressed: () {
-                myComments.remove(comment);
-                setState(() {});
-                Navigator.of(context).pop();
-              },
-            ),
-            FlatButton(
-              color: Colors.green,
-              child: Text('No'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        ); */
-      },
-    );
+  getCurrentUserLocation() async{
+
+      dynamic currentLocation = LocationData;
+
+      var error;
+
+      var location = new Location();
+
+      try {
+        currentLocation = await location.getLocation();
+        userLatitude = currentLocation.latitude;
+        userLongitude = currentLocation.longitude;
+        print(userLongitude);
+        print(userLatitude);
+
+      } on PlatformException catch (e) {
+        if (e.code == 'PERMISSION_DENIED') {
+          error = 'Permission denied';
+        }
+        currentLocation = null;
+      }
+
+
   }
+
 
 
   showMyCustomDialog(comment){
@@ -155,32 +146,17 @@ class _MyAppState extends State<MyApp> {
                     children: <Widget>[
                       Icon(Icons.pin_drop),
                       GestureDetector(
-                        onTap: () async{
+                        onTap: getCurrentUserLocation,
+                        child: GestureDetector(
+                          onTap: (){
 
-                          dynamic currentLocation = LocationData;
+                            Navigator.push(context,MaterialPageRoute(builder: (context)=>Screen3(latitude:userLatitude ,longitude: userLongitude,)));
 
-                          var error;
-
-                          var location = new Location();
-
-// Platform messages may fail, so we use a try/catch PlatformException.
-                          try {
-                            currentLocation = await location.getLocation();
-                            print(currentLocation.latitude);
-                          } on PlatformException catch (e) {
-                            if (e.code == 'PERMISSION_DENIED') {
-                              error = 'Permission denied';
-                            }
-                            currentLocation = null;
-                          }
-
-
-
-
-                        },
-                        child: Text(
-                          'Current Location',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          },
+                          child: Text(
+                            'Current Location',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
                         ),
                       )
                     ],
